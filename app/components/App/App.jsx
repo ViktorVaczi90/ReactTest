@@ -38,6 +38,7 @@ class App extends React.Component {
 	componentDidMount() {
 		$.get('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1', data =>
 			$.get(`https://deckofcardsapi.com/api/deck/${data.deck_id}/draw/?count=9`, (cards) => {
+				cards.cards = cards.cards.map(card => Object.assign({}, card, { ready: false }));
 				this.props.dispatch({
 					type: 'NEW_DECK',
 					deck: cards.cards,

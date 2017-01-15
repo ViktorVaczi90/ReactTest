@@ -16,7 +16,8 @@ const mapDispatchToProps = dispatch =>
 
 const mapStateToProps = (state, props) =>
 	({
-		visible: !!(((props.side === 'left') && state.pressedCards.leftCard && (state.pressedCards.leftCard.code === props.card.code))
+		visible: !!((props.card.done)
+		|| ((props.side === 'left') && state.pressedCards.leftCard && (state.pressedCards.leftCard.code === props.card.code))
 		|| ((props.side === 'right') && state.pressedCards.rightCard && (state.pressedCards.rightCard.code === props.card.code))),
 	});
 
