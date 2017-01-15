@@ -1,4 +1,6 @@
 import React from 'react';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import Paper from 'material-ui/Paper';
 
 require('./App.css');
 
@@ -15,7 +17,7 @@ class App extends React.Component {
 
 	componentDidMount() {
 		this.timer = setInterval(() => {
-			this.setState({ time: new Date() });
+			this.setState({time: new Date()});
 		}, 1000);
 	}
 
@@ -25,11 +27,15 @@ class App extends React.Component {
 
 	render() {
 		return (
-			<div>
-				<h1>Hello World</h1>
-
-				<p>The time is <b>{this.state.time.toString()}</b></p>
-			</div>
+			<MuiThemeProvider>
+				<div>
+					<h1>Hello World</h1>
+					<Paper zDepth={3}>
+						<p>Hi material</p>
+						</Paper>
+					<p>The time is <b>{this.state.time.toString()}</b></p>
+				</div>
+			</MuiThemeProvider>
 		);
 	}
 }

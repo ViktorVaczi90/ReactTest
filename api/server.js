@@ -1,5 +1,12 @@
 const Hapi = require('hapi');
 
+//
+// Tell any CSS tooling (such as Material UI) to use all vendor prefixes if the
+// user agent is not known.
+// -----------------------------------------------------------------------------
+global.navigator = global.navigator || {};
+global.navigator.userAgent = global.navigator.userAgent || 'all';
+
 // Create a server with a host and port
 const server = new Hapi.Server();
 server.connection({

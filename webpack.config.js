@@ -14,7 +14,7 @@ module.exports = {
       '/api/*': {
         target: 'http://localhost:8000',
         pathRewrite: {
-          '/api' : ''
+          '/api': ''
         }
       }
     }
@@ -30,9 +30,9 @@ module.exports = {
     filename: './bundle.js'
   },
   module: {
-    loaders:[
-      { test: /\.css$/, include: path.resolve(__dirname, 'app'), loader: 'style-loader!css-loader' },
-      { test: /\.js[x]?$/, include: path.resolve(__dirname, 'app'), exclude: /node_modules/, loader: 'babel-loader' },
+    loaders: [
+      {test: /\.css$/, include: path.resolve(__dirname, 'app'), loader: 'style-loader!css-loader'},
+      {test: /\.js[x]?$/, include: path.resolve(__dirname, 'app'), exclude: /node_modules/, loader: 'babel-loader'},
     ]
   },
   resolve: {
@@ -40,6 +40,6 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new OpenBrowserPlugin({ url: 'http://localhost:8080' })
+    new OpenBrowserPlugin({url: 'http://localhost:8080'})
   ]
 };
