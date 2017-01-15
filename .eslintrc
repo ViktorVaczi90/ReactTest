@@ -16,7 +16,9 @@
   "extends": "eslint-config-airbnb",
   "rules": {
 	  "no-console": "off",
+	  "no-param-reassign": "off",
 	  "no-underscore-dangle": "off",
+	  "react/prop-types": "off",
     "indent": [2, "tab", { "SwitchCase": 1, "VariableDeclarator": 1 }],
     "no-tabs": "off",
     "react/jsx-indent-props": [2, "tab"],
