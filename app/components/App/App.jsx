@@ -17,7 +17,7 @@ class App extends React.Component {
 
 	componentDidMount() {
 		this.timer = setInterval(() => {
-			this.setState({time: new Date()});
+			this.setState({ time: new Date() });
 		}, 1000);
 	}
 
@@ -32,7 +32,7 @@ class App extends React.Component {
 					<h1>Hello World</h1>
 					<Paper zDepth={3}>
 						<p>Hi material</p>
-						</Paper>
+					</Paper>
 					<p>The time is <b>{this.state.time.toString()}</b></p>
 				</div>
 			</MuiThemeProvider>
