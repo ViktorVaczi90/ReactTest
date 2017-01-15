@@ -11,11 +11,12 @@ class TopButton extends React.Component {
 		super(props);
 		this.asdasd = true;
 	}
+
 	render() {
 		return (
 			<div>
-				<RaisedButton label="Primary" primary={true} style={style}/>
-				<RaisedButton label="Secondary" secondary={true} style={style}/>
+				<RaisedButton label="Primary" primary style={style} />
+				<RaisedButton label="Secondary" secondary style={style} />
 			</div>
 		);
 	}

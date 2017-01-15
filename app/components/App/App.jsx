@@ -21,7 +21,7 @@ const shuffle = (a) => {
 		[b[i - 1], b[j]] = [b[j], b[i - 1]];
 	}
 	return b;
-}
+};
 
 class App extends React.Component {
 	constructor(props) {
@@ -37,7 +37,7 @@ class App extends React.Component {
 
 	componentDidMount() {
 		$.get('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1', data =>
-			$.get(`https://deckofcardsapi.com/api/deck/${data.deck_id}/draw/?count=9`, cards => {
+			$.get(`https://deckofcardsapi.com/api/deck/${data.deck_id}/draw/?count=9`, (cards) => {
 				this.props.dispatch({
 					type: 'NEW_DECK',
 					deck: cards.cards,
@@ -58,13 +58,13 @@ class App extends React.Component {
 			<MuiThemeProvider>
 				<div>
 					<TopButton />
-					<Paper zDepth={3}>
-						<div className="container">
-							<div className="row">
-								<div className="col-xs-6">
+					<Paper zDepth={3} >
+						<div className="container" >
+							<div className="row" >
+								<div className="col-xs-6" >
 									<CardDisplay deck={this.props.leftDeck} side="left" />
 								</div>
-								<div className="col-xs-6">
+								<div className="col-xs-6" >
 									<CardDisplay deck={this.props.rightDeck} side="right" />
 								</div>
 							</div>
@@ -76,10 +76,9 @@ class App extends React.Component {
 		);
 	}
 }
-const mapStateToProps = (state) => {
-	return {
+const mapStateToProps = state =>
+	({
 		leftDeck: state.leftDeck,
 		rightDeck: state.rightDeck,
-	};
-};
+	});
 export default connect(mapStateToProps)(App);

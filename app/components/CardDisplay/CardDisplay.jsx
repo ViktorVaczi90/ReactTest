@@ -1,51 +1,47 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { GridList, GridTile } from 'material-ui/GridList';
-import Subheader from 'material-ui/Subheader';
+import { GridList } from 'material-ui/GridList';
+import SingleCard from '../SingleCard/SingleCard';
 
 const styles = {
 	root: {
 		display: 'flex',
 		flexWrap: 'wrap',
-		justifyContent: 'space-around',
+		//justifyContent: 'space-around',
 	},
 	gridList: {
 		width: 700,
-		height: 450,
-		overflowY: 'auto',
+		height: 600,
+		//overflowY: 'auto',
 	},
 };
 
 class CardDisplay extends React.Component {
-	constructor (props) {
+	constructor(props) {
 		super(props);
 		this.asdasd = true;
 	}
 
-	render () {
+	render() {
 		return (
-			<div style={styles.root}>
+			<div style={styles.root} >
 				<GridList
 					cols={3}
 					cellHeight={100}
 					style={styles.gridList}
 				>
-					<Subheader>December</Subheader>
-					{this.props.deck.map(card => (
-						<GridTile
-							key={card.code}
-							onClick={()=>
-								alert('fasz')
-							}
-						>
-							<img role="presentation" src={card.image}/>
-						</GridTile>
-					))}
+					{this.props.deck.map(card =>
+						<SingleCard card={card} side={this.props.side} key={card.code} />)}
 				</GridList>
 			</div>
 		);
 	}
 }
+const mapStateToProps = state =>
+	({
+		pressedCards: state.pressedCards,
+	});
 
-export default connect()(CardDisplay);
+
+export default connect(mapStateToProps)(CardDisplay);
