@@ -33,10 +33,12 @@ const pressedCards = (state = { leftCard: undefined, rightCard: undefined, moves
 			// Both cards have been put to a place
 			if (state.leftCard && state.rightCard) {
 				if (action.side === 'left') {
-					return { leftCard: action.card, rightCard: undefined };
+					return Object.assign({},
+						{ leftCard: action.card, rightCard: undefined, moves: state.moves });
 				}
 				if (action.side === 'right') {
-					return { leftCard: undefined, rightCard: action.card };
+					return Object.assign({},
+						{ leftCard: undefined, rightCard: action.card, moves: state.moves });
 				}
 			}
 			// there is no left card yet
@@ -44,18 +46,22 @@ const pressedCards = (state = { leftCard: undefined, rightCard: undefined, moves
 				if (state.rightCard && state.rightCard === action.card) { // If there is a match
 					state.rightCard.done = true;
 					action.card.done = true;
-					return { leftCard: undefined, rightCard: undefined };
+					return Object.assign({},
+						{ leftCard: undefined, rightCard: undefined, moves: state.moves + 1 });
 				}
-				return Object.assign({}, state, { leftCard: action.card }); // No match
+				return Object.assign({}, state,
+					{ leftCard: action.card, moves: state.moves + 1 }); // No match
 			}
 			// there is no right card yet
 			if (action.side === 'right' && !state.rightCard) {
 				if (state.leftCard && state.leftCard === action.card) { // If there is a match
 					state.leftCard.done = true;
 					action.card.done = true;
-					return { leftCard: undefined, rightCard: undefined };
+					return Object.assign({},
+						{ leftCard: undefined, rightCard: undefined, moves: state.moves + 1 });
 				}
-				return Object.assign({}, state, { rightCard: action.card }); // No match
+				return Object.assign({}, state,
+					{ rightCard: action.card, moves: state.moves + 1 }); // No match
 			}
 			return state;
 		default:
