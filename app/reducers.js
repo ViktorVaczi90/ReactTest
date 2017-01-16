@@ -43,25 +43,37 @@ const pressedCards = (state = { leftCard: undefined, rightCard: undefined, moves
 			}
 			// there is no left card yet
 			if (action.side === 'left' && !state.leftCard) {
-				if (state.rightCard && state.rightCard === action.card) { // If there is a match
-					state.rightCard.done = true;
-					action.card.done = true;
-					return Object.assign({},
-						{ leftCard: undefined, rightCard: undefined, moves: state.moves + 1 });
+				if (state.rightCard) { // If there is a right card
+					if (state.rightCard === action.card) { // If there is a match
+						state.rightCard.done = true;
+						action.card.done = true;
+						return Object.assign({},
+							{ leftCard: action.card, moves: state.moves + 1 });
+					}
+					// if there is no match
+					return Object.assign({}, state,
+						{ leftCard: action.card, moves: state.moves + 1 });
 				}
+				// There is no right card yet
 				return Object.assign({}, state,
-					{ leftCard: action.card, moves: state.moves + 1 }); // No match
+					{ leftCard: action.card });
 			}
 			// there is no right card yet
 			if (action.side === 'right' && !state.rightCard) {
-				if (state.leftCard && state.leftCard === action.card) { // If there is a match
-					state.leftCard.done = true;
-					action.card.done = true;
-					return Object.assign({},
-						{ leftCard: undefined, rightCard: undefined, moves: state.moves + 1 });
+				if (state.leftCard) { // If there is a left card
+					if (state.leftCard === action.card) { // If there is a match
+						state.leftCard.done = true;
+						action.card.done = true;
+						return Object.assign({}, state,
+							{ rightCard: action.card, moves: state.moves + 1 });
+					}
+					// if there is no match
+					return Object.assign({}, state,
+						{ rightCard: action.card, moves: state.moves + 1 });
 				}
+				// There is no right card yet
 				return Object.assign({}, state,
-					{ rightCard: action.card, moves: state.moves + 1 }); // No match
+					{ rightCard: action.card });
 			}
 			return state;
 		default:
